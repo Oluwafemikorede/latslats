@@ -51,42 +51,19 @@
 
     <script type="text/javascript">
 
-    document.addEventListener("deviceready", onDeviceReady, false);
-   /* $(document).ready(function()
-    {*/
+    //document.addEventListener("deviceready", onDeviceReady, false);
+    $(document).ready(function()
+    {
+      onDeviceReady();
   function onDeviceReady() {
-    	//console.log( "ready!" );
-/*$("#loc").click( function() {
-  
-    console.log('addLocation');
-    navigator.geolocation.getCurrentPosition(
-        function(position) {
-<<<<<<< HEAD
-            $('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
-=======
-           $('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
->>>>>>> d3563005d463cda0e7ed07dbc843a70b31770854
-            alert(position.coords.latitude + ',' + position.coords.longitude);
-
-
-
-			$.post( "http://exolvetechnologies.com/gcode/api/location", 
-				{ gcode: 'LA100' , lat: position.coords.latitude , lng: position.coords.longitude }, function( data ) {
-				$( ".result" ).html( data );
-			});	
-        },
-        function() {
-            alert('Error getting location');
-        });
-    return false;
-});*/
-
+    
 
 $("#pic").click( function(event) {
 
 event.preventDefault();
     if (!navigator.camera) {
-        app.showAlert("Camera API not supported", "Error");
+        alert("Camera API not supported", "Error");
+        //alert('lat');
         return;
     }
 
@@ -129,6 +106,7 @@ event.preventDefault();
         }
 
     }
+  });
 
     </script>
   </body>
