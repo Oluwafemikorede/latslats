@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Bootstrap 101 Template</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="phonegap.js"></script>
+   
+   
+    
+  </head>
+  <body>
+    
+    <div class="container-fluid">
+    	<div class="row">
+    	<div class="col-xs-12 col-sm-6">
+    	<ul>
+    		<li><a href="#" id="loc" class="add-location-btn">Add Location</a></li>
+    		<li><a href="#" id="pic" class="change-pic-btn">Take Picture</a></li>
+
+    		</ul>
+    		
+
+    	</div>
+    	<div class="col-xs-12 col-sm-6">
+<img src="" class="yes" style="width:80px; height:80px;">
+<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+    	</div>
+  
+</div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+
+     <script src="js/memory-store.js"></script>
+
+      <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+
+    document.addEventListener("deviceready", onDeviceReady, false);
+   /* $(document).ready(function()
+    {*/
+  function onDeviceReady() {
+    	//console.log( "ready!" );
+/*$("#loc").click( function() {
+  
+    console.log('addLocation');
+    navigator.geolocation.getCurrentPosition(
+        function(position) {
+<<<<<<< HEAD
+            $('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
+=======
+           $('.location', this.el).html(position.coords.latitude + ',' + position.coords.longitude);
+>>>>>>> d3563005d463cda0e7ed07dbc843a70b31770854
+            alert(position.coords.latitude + ',' + position.coords.longitude);
+
+
+
+			$.post( "http://exolvetechnologies.com/gcode/api/location", 
+				{ gcode: 'LA100' , lat: position.coords.latitude , lng: position.coords.longitude }, function( data ) {
+				$( ".result" ).html( data );
+			});	
+        },
+        function() {
+            alert('Error getting location');
+        });
+    return false;
+});*/
+
+
+$("#pic").click( function(event) {
+
+event.preventDefault();
+    if (!navigator.camera) {
+        app.showAlert("Camera API not supported", "Error");
+        return;
+    }
+
+    var options =   {   quality: 50,
+                        destinationType: Camera.DestinationType.DATA_URL,
+                        sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
+                        encodingType: 0     // 0=JPG 1=PNG
+                    };
+
+     navigator.camera.getPicture(uploadPhoto,
+     function(message) { app.showAlert('get picture failed'); },
+              { quality: 50, 
+                destinationType: navigator.camera.DestinationType.FILE_URI,
+                sourceType: 1,      // 0:Photo Library, 1=Camera, 2=Saved Photo Album
+                 encodingType: 0     // 0=JPG 1=PNG
+                }
+                                        );
+     return false;
+	});
+
+ function uploadPhoto(imageURI) {
+            var options = new FileUploadOptions();
+            options.fileKey="file";
+            options.fileName=imageURI.substr(imageURI.lastIndexOf('/')+1);
+            options.mimeType="image/jpeg";
+
+            var params = new Object();
+            params.value1 = "test";
+            params.value2 = "param";
+
+            options.params = params;
+
+            var ft = new FileTransfer();
+            ft.upload(imageURI, "http://exolvetechnologies.com/gcode/api/upload", win, fail, options);
+
+            $.post( "http://exolvetechnologies.com/gcode/api/location", 
+              { gcode: 'LA100' , lat: position.coords.latitude , lng: position.coords.longitude }, function( data ) {
+              $( ".result" ).html( data );
+            });
+        }
+
+    }
+
+    </script>
+  </body>
+</html>
